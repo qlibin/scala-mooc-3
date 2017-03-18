@@ -12,3 +12,23 @@ Learning Outcomes. By the end of this course you will be able to:
 - express common algorithms in a functional style and solve them in parallel,
 - competently microbenchmark parallel code,
 - write programs that effectively use parallel collections to achieve performance
+
+## Some useful pages for the course 
+
+[Scala cheat sheet for a course](https://github.com/lampepfl/progfun-wiki/blob/gh-pages/CheatSheet.md)
+
+[Reactive cheat sheet](https://github.com/sjuvekar/reactive-programming-scala/blob/master/ReactiveCheatSheet.md)
+
+[Scala style guide](https://www.coursera.org/learn/progfun2/supplement/nvyNk/scala-style-guide)
+
+[scalastyle.org](http://www.scalastyle.org/)
+
+## Other quick references
+
+[Scala Standard Library API](http://www.scala-lang.org/api/current/)
+
+Akka [Reference Documentation](http://doc.akka.io/docs/akka/2.4.2/scala.html) and [API](http://doc.akka.io/api/akka/2.4.2/)
+
+[RxScala API](http://reactivex.io/rxscala/scaladoc/index.html#rx.lang.scala.Observable)
+
+[Scala Overview on StackOverflow](http://stackoverflow.com/tags/scala/info): A list of useful questions sorted by topic
