@@ -46,7 +46,24 @@ object ParallelCountChange {
    *  coins for the specified amount of money.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-    ???
+    if (money < 0) return 0
+    if (money == 0) return 1
+    if (coins.count(coin => coin <= 0) > 0) throw new IllegalArgumentException("Coins can not be negative")
+
+    def countChange(combinationsFound: Int, sumCoinsSelected: Int, lastCoinSelected: Int): Int = {
+      if (sumCoinsSelected == money) {
+        combinationsFound + 1
+      } else if (sumCoinsSelected < money) {
+        val coinsNotLessThanTheLastSelected = coins.filter(coin => coin >= lastCoinSelected)
+        val combinationsCountForDifferentChoices = coinsNotLessThanTheLastSelected.map(coin => {
+          countChange(0, sumCoinsSelected + coin, coin)
+        })
+        combinationsFound + combinationsCountForDifferentChoices.sum
+      } else
+        combinationsFound
+    }
+
+    if (money == 0) 0 else countChange(0, 0, -1)
   }
 
   type Threshold = (Int, List[Int]) => Boolean

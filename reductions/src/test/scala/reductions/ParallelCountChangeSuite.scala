@@ -63,5 +63,32 @@ class ParallelCountChangeSuite extends FunSuite {
     check(250, List(1, 2, 5, 10, 20, 50), 177863)
   }
 
+  test("countChange: example given in instructions") {
+    assert(countChange(4,List(1,2)) === 3)
+  }
+
+  test("countChange: 4: 1, 2, 3") {
+    assert(countChange(4,List(1,2,3)) === 4)
+  }
+
+  test("countChange: 1000 roubles") {
+    assert(countChange(1000,List(50,100,500)) === 18)
+  }
+
+  test("countChange: sorted CHF") {
+    assert(countChange(300,List(5,10,20,50,100,200,500)) === 1022)
+  }
+
+  test("countChange: no pennies") {
+    assert(countChange(301,List(5,10,20,50,100,200,500)) === 0)
+  }
+
+  test("countChange: unsorted CHF") {
+    assert(countChange(300,List(500,5,50,100,20,200,10)) === 1022)
+  }
+
+  test("countChange: empty coins list") {
+    assert(countChange(300,List()) === 0)
+  }
 
 }
