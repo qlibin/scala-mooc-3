@@ -1,24 +1,17 @@
 package reductions
 
-import java.util.concurrent._
-import scala.collection._
-import org.scalatest.FunSuite
 import org.junit.runner.RunWith
+import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
-import common._
-
-import ParallelCountChange._
+import reductions.ParallelCountChange._
 
 @RunWith(classOf[JUnitRunner])
-class ParallelCountChangeSuite extends FunSuite {
+class CountChangeSuite extends FunSuite {
 
-  def countChange(money: Int, coins: List[Int]) =
-    parCountChange(money, coins, combinedThreshold(money, coins))
-
-  test("parCountChange should return 0 for money < 0") {
-    def check(money: Int, coins: List[Int]) =
+  test("countChange should return 0 for money < 0") {
+    def check(money: Int, coins: List[Int]) = 
       assert(countChange(money, coins) == 0,
-        s"parCountChange($money, _) should be 0")
+        s"countChang($money, _) should be 0")
 
     check(-1, List())
     check(-1, List(1, 2, 3))
@@ -26,29 +19,29 @@ class ParallelCountChangeSuite extends FunSuite {
     check(-Int.MinValue, List(1, 2, 3))
   }
 
-  test("parCountChange should return 1 when money == 0") {
-    def check(coins: List[Int]) =
+  test("countChange should return 1 when money == 0") {
+    def check(coins: List[Int]) = 
       assert(countChange(0, coins) == 1,
-        s"parCountChange(0, _) should be 1")
+        s"countChang(0, _) should be 1")
 
     check(List())
     check(List(1, 2, 3))
     check(List.range(1, 100))
   }
 
-  test("parCountChange should return 0 for money > 0 and coins = List()") {
-    def check(money: Int) =
+  test("countChange should return 0 for money > 0 and coins = List()") {
+    def check(money: Int) = 
       assert(countChange(money, List()) == 0,
-        s"parCountChange($money, List()) should be 0")
+        s"countChang($money, List()) should be 0")
 
     check(1)
     check(Int.MaxValue)
   }
 
-  test("parCountChange should work when there is only one coin") {
+  test("countChange should work when there is only one coin") {
     def check(money: Int, coins: List[Int], expected: Int) =
       assert(countChange(money, coins) == expected,
-        s"parCountChange($money, $coins) should be $expected")
+        s"countChange($money, $coins) should be $expected")
 
     check(1, List(1), 1)
     check(2, List(1), 1)
@@ -57,40 +50,40 @@ class ParallelCountChangeSuite extends FunSuite {
     check(Int.MaxValue - 1, List(Int.MaxValue), 0)
   }
 
-  test("parCountChange should work for multi-coins") {
+  test("countChange should work for multi-coins") {
     def check(money: Int, coins: List[Int], expected: Int) =
       assert(countChange(money, coins) == expected,
-        s"parCountChange($money, $coins) should be $expected")
+        s"countChange($money, $coins) should be $expected")
 
     check(50, List(1, 2, 5, 10), 341)
     check(250, List(1, 2, 5, 10, 20, 50), 177863)
   }
 
-  test("parCountChange: example given in instructions") {
+  test("countChange: example given in instructions") {
     assert(countChange(4,List(1,2)) === 3)
   }
 
-  test("parCountChange: 4: 1, 2, 3") {
+  test("countChange: 4: 1, 2, 3") {
     assert(countChange(4,List(1,2,3)) === 4)
   }
 
-  test("parCountChange: 1000 roubles") {
+  test("countChange: 1000 roubles") {
     assert(countChange(1000,List(50,100,500)) === 18)
   }
 
-  test("parCountChange: sorted CHF") {
+  test("countChange: sorted CHF") {
     assert(countChange(300,List(5,10,20,50,100,200,500)) === 1022)
   }
 
-  test("parCountChange: no pennies") {
+  test("countChange: no pennies") {
     assert(countChange(301,List(5,10,20,50,100,200,500)) === 0)
   }
 
-  test("parCountChange: unsorted CHF") {
+  test("countChange: unsorted CHF") {
     assert(countChange(300,List(500,5,50,100,20,200,10)) === 1022)
   }
 
-  test("parCountChange: empty coins list") {
+  test("countChange: empty coins list") {
     assert(countChange(300,List()) === 0)
   }
 
